@@ -1,0 +1,85 @@
+<script>
+	/*create s function thst uses Math.random & Math.floor method to return a random number between 0 and 3
+	if number is = 0 refurn rock
+	else if number is = 1 return paper
+	else return scissors*/
+	
+		const random = Math.floor(Math.random() * 3);
+		
+		function getComputerChoice() {
+		
+		  if (random === 0) return "Rock";
+		  if (random === 1) return "Paper";
+		  return "Scissors";
+		}
+	
+		
+		
+	/*use Prompt method to get user input and store it in a variable named input
+	use toLowerCase method to turn input to lowercase so input is case insensitive
+	if input = rock return Rock
+	else if input = paper return Paper
+	else if input = scissors return Scissors*/
+	
+		function getHumanChoice() {
+		  const input = prompt("Enter Rock, Paper, or Scissors");
+		
+		  if (!input) return null;
+		
+		  const choice = input.toLowerCase();
+		
+		  if (choice === "rock") return "Rock";
+		  if (choice === "paper") return "Paper";
+		  if (choice === "scissors") return "Scissors";
+		
+		  console.log("You can only enter Rock, Paper, or Scissors");
+		  return null;
+		}
+		
+		/*declear two variables: humanScore and computerScore and initialize with both with a value of zero
+		chain if else statements for 7 possible scenarios: 3 where the human wins, another 3 where the computer wins, and one where theres a draw.
+		increment the score of either variable based on the winner
+		log a message to console stating wjo won and why
+		declear teo variables: humanSelection & computerSelection and pass them both the values of their respective getChoice function
+		
+		*/
+		
+		
+		let humanScore = 0;
+		let computerScore = 0;
+		
+		function playRound(humanChoice, computerChoice) {
+			console.log("Human:", humanChoice);
+			console.log("Computer:", computerChoice);
+			
+			if (humanChoice === "Rock" && computerChoice === "Scissors") {
+				humanScore++;
+				console.log("You win!, Rock beats Scissors");
+			} else if (humanChoice === "Paper" && computerChoice === "Rock") {
+				humanScore++;
+				console.log("You win!, Paper beats Rock");
+			} else if (humanChoice === "Scissors" && computerChoice === "Paper") {
+				humanScore++;
+				console.log("You win!, Scissors beats Paper");
+			} else if (computerChoice === "Rock" && humanChoice === "Scissors") {
+				computerScore++;
+				console.log("You lose!, Rock beats Scissors");
+			} else if (computerChoice === "Paper" && humanChoice === "Rock") {
+				computerScore++;
+				console.log("You lose!, Paper beats Rock");
+			} else if (computerChoice === "Scissors" && humanChoice === "Paper") {
+				computerScore++;
+				console.log("You lose!, Scissors beats Paper")
+			} else {
+				console.log("oops! thats a draw, you both chose the same thing");
+			}
+		}
+		
+		const humanSelection = getHumanChoice();
+		const computerSelection = getComputerChoice();
+		
+		playRound(humanSelection, computerSelection);
+		
+
+	
+</script>
