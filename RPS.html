@@ -1,5 +1,5 @@
 <script>
-	/*create s function thst uses Math.random & Math.floor method to return a random number between 0 and 3
+	/*create a function thst uses Math.random & Math.floor method to return a random number between 0 and 3
 	if number is = 0 refurn rock
 	else if number is = 1 return paper
 	else return scissors*/
@@ -7,7 +7,6 @@
 		const random = Math.floor(Math.random() * 3);
 		
 		function getComputerChoice() {
-		
 		  if (random === 0) return "Rock";
 		  if (random === 1) return "Paper";
 		  return "Scissors";
@@ -40,9 +39,7 @@
 		chain if else statements for 7 possible scenarios: 3 where the human wins, another 3 where the computer wins, and one where theres a draw.
 		increment the score of either variable based on the winner
 		log a message to console stating wjo won and why
-		declear teo variables: humanSelection & computerSelection and pass them both the values of their respective getChoice function
-		
-		*/
+		declear teo variables: humanSelection & computerSelection and pass them both the values of their respective getChoice function*/
 		
 		
 		let humanScore = 0;
@@ -52,6 +49,7 @@
 			console.log("Human:", humanChoice);
 			console.log("Computer:", computerChoice);
 			
+			//Human winning scenarios if-else chain
 			if (humanChoice === "Rock" && computerChoice === "Scissors") {
 				humanScore++;
 				console.log("You win!, Rock beats Scissors");
@@ -60,8 +58,10 @@
 				console.log("You win!, Paper beats Rock");
 			} else if (humanChoice === "Scissors" && computerChoice === "Paper") {
 				humanScore++;
-				console.log("You win!, Scissors beats Paper");
-			} else if (computerChoice === "Rock" && humanChoice === "Scissors") {
+				console.log("You win!, Scissors beats Paper");	
+			}
+			//Computer winning scenarios else-if chain
+			else if (computerChoice === "Rock" && humanChoice === "Scissors") {
 				computerScore++;
 				console.log("You lose!, Rock beats Scissors");
 			} else if (computerChoice === "Paper" && humanChoice === "Rock") {
@@ -71,14 +71,38 @@
 				computerScore++;
 				console.log("You lose!, Scissors beats Paper")
 			} else {
-				console.log("oops! thats a draw, you both chose the same thing");
+				console.log("oops! That's a draw, you both chose the same thing");
 			}
 		}
 		
-		const humanSelection = getHumanChoice();
-		const computerSelection = getComputerChoice();
+		/*play entire game 5 times using a loop that passes both getChoice finctions as parameters to the playRound function and calls all three functions 5 times
+		log final scores to console using humanScore and computerScors variable values
+		if if humanScore is greater than the computerScore, log a message to the console stating the user won
+		else if computerScore is greater than humanScore, log a message to the console stating the computer won
+		else log a messafe to the console stating its a draw*/
 		
-		playRound(humanSelection, computerSelection);
+		function playGame() {
+		  for (let round = 1; round <= 5; round++) {
+		    console.log(`\nRound ${round}:`);
+		    const humanSelection = getHumanChoice();
+		    const computerSelection = getComputerChoice();
+		    playRound(humanSelection, computerSelection);
+		  }
+		
+		  console.log("\n=== Final Scores ===");
+		  console.log(`You: ${humanScore} | Computer: ${computerScore}`);
+		
+		  if (humanScore > computerScore) {
+		    console.log("You are the overall winner!");
+		  } else if (computerScore > humanScore) {
+		    console.log("Computer wins the game!");
+		  } else {
+		    console.log("It's a tie game!");
+		  }
+		}
+		
+		// Start the game
+		playGame();
 		
 
 	
