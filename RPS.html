@@ -1,12 +1,12 @@
 <script>
-	/*create a function thst uses Math.random & Math.floor method to return a random number between 0 and 3
+	/*create a function that uses Math.random & Math.floor method to return a random number between 0 and 3
 	if number is = 0 refurn rock
 	else if number is = 1 return paper
 	else return scissors*/
-	
-		const random = Math.floor(Math.random() * 3);
 		
 		function getComputerChoice() {
+			const random = Math.floor(Math.random() * 3);
+			
 		  if (random === 0) return "Rock";
 		  if (random === 1) return "Paper";
 		  return "Scissors";
@@ -15,7 +15,7 @@
 		
 		
 	/*use Prompt method to get user input and store it in a variable named input
-	use toLowerCase method to turn input to lowercase so input is case insensitive
+	Use the toLowerCase method to turn the input to lowercase so the input is case-insensitive
 	if input = rock return Rock
 	else if input = paper return Paper
 	else if input = scissors return Scissors*/
@@ -35,12 +35,12 @@
 		  return null;
 		}
 		
-		/*declear two variables: humanScore and computerScore and initialize with both with a value of zero
-		chain if else statements for 7 possible scenarios: 3 where the human wins, another 3 where the computer wins, and one where theres a draw.
-		increment the score of either variable based on the winner
-		log a message to console stating wjo won and why
-		declear teo variables: humanSelection & computerSelection and pass them both the values of their respective getChoice function*/
 		
+		/*declare two variables: humanScore and computerScore and initialize both with a value of zero
+		chain if-else statements for 7 possible scenarios: 3 where the human wins, 3 where the computer wins, and 1 where there's a draw.
+		Increment the score of either variable based on the winner
+		Log a message to the console stating who won and why
+		declare two variables: humanSelection & computerSelection and pass them both the values of their respective getChoice function*/
 		
 		let humanScore = 0;
 		let computerScore = 0;
@@ -60,6 +60,7 @@
 				humanScore++;
 				console.log("You win!, Scissors beats Paper");	
 			}
+			
 			//Computer winning scenarios else-if chain
 			else if (computerChoice === "Rock" && humanChoice === "Scissors") {
 				computerScore++;
@@ -75,11 +76,12 @@
 			}
 		}
 		
-		/*play entire game 5 times using a loop that passes both getChoice finctions as parameters to the playRound function and calls all three functions 5 times
-		log final scores to console using humanScore and computerScors variable values
-		if if humanScore is greater than the computerScore, log a message to the console stating the user won
+		
+		/*play entire game 5 times using a loop that passes both getChoice functions as parameters to the playRound function and calls all three functions 5 times
+		log final scores to console using humanScore and computerScore variable values
+		If humanScore is greater than the computerScore, log a message to the console stating the user won
 		else if computerScore is greater than humanScore, log a message to the console stating the computer won
-		else log a messafe to the console stating its a draw*/
+		else log a message to the console stating it's a draw*/
 		
 		function playGame() {
 		  for (let round = 1; round <= 5; round++) {
@@ -103,7 +105,4 @@
 		
 		// Start the game
 		playGame();
-		
-
-	
 </script>
