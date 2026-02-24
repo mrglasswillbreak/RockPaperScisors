@@ -1,1 +1,98 @@
-<script src="script.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>New Rock</title>
+</head>
+<body>
+	<script>
+		
+		const choices = ["Rock", "Paper", "Scissors"];
+
+		let humanScore = 0;
+		let computerScore = 0;
+		let drawScore = 0;
+		
+		function getComputerChoice() {
+		  return choices[Math.floor(Math.random() * choices.length)];
+		}
+		
+		function getHumanChoice(round) {
+		  while (true) {
+		    const input = prompt(
+		      `Round ${round} Enter Rock, Paper, or Scissors
+		
+You: ${humanScore} | System: ${computerScore} | Draws: ${drawScore}`
+		    );
+		
+		    if (!input) continue;
+		
+		    const choice = input.trim().toLowerCase();
+		
+		    if (choices.map(c => c.toLowerCase()).includes(choice)) {
+		      return choice.charAt(0).toUpperCase() + choice.slice(1);
+		    }
+		
+		    alert("Ahn ann, why na? Please enter Rock, Paper, or Scissors.");
+		  }
+		}
+		
+		function playRound(humanChoice, computerChoice) {
+		  console.log(`Human: ${humanChoice}`);
+		  console.log(`Computer: ${computerChoice}`);
+		
+		  const winMap = {
+		    Rock: "Scissors",
+		    Paper: "Rock",
+		    Scissors: "Paper"
+		  };
+		
+		  if (humanChoice === computerChoice) {
+		    drawScore++;
+		    console.log("Draw! You both chose the same.");
+		    return;
+		  }
+		
+		  if (winMap[humanChoice] === computerChoice) {
+		    humanScore++;
+		    console.log(`${humanChoice} beats ${computerChoice}. You win!`);
+		  } else {
+		    computerScore++;
+		    console.log(`${computerChoice} beats ${humanChoice}. You lose!`);
+		  }
+		}
+		
+		function playGame() {
+		  // Reset scores in case game runs again
+		  humanScore = 0;
+		  computerScore = 0;
+		  drawScore = 0;
+		
+		  for (let round = 1; round <= 5; round++) {
+		    const humanSelection = getHumanChoice(round);
+		    const computerSelection = getComputerChoice();
+		    playRound(humanSelection, computerSelection);
+		  }
+		
+		  const finalMessage = `Final Results:
+You: ${humanScore}
+System: ${computerScore}
+Draws: ${drawScore}
+		`;
+		
+		  console.log(finalMessage);
+		
+		  if (humanScore > computerScore) {
+		    alert(finalMessage + "\nYou are the overall winner!");
+		  } else if (computerScore > humanScore) {
+		    alert(finalMessage + "\nThe System wins this game! Better luck next time");
+		  } else {
+		    alert(finalMessage + "\nIt's an overall tie!");
+		  }
+		}
+
+		playGame();
+		
+	</script>
+</body>
+</html>
