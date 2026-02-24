@@ -2,10 +2,58 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<title>New Rock</title>
+	<title>Moe's Rock Paper Scissors</title>
 </head>
 <body>
 	<script>
+		
+/*START
+
+SET humanScore = 0
+SET computerScore = 0
+SET drawScore = 0
+
+DEFINE choices = ["Rock", "Paper", "Scissors"]
+
+FUNCTION getComputerChoice
+    RETURN random item from choices
+
+FUNCTION getHumanChoice(round)
+    LOOP until valid input
+        SHOW prompt including:
+            round number
+            humanScore
+            computerScore
+            drawScore
+        IF input invalid
+            SHOW error
+        ELSE
+            RETURN formatted input
+
+FUNCTION playRound(humanChoice, computerChoice)
+    IF humanChoice equals computerChoice
+        increment drawScore
+        RETURN "draw"
+
+    IF humanChoice beats computerChoice
+        increment humanScore
+        RETURN "human"
+
+    ELSE
+        increment computerScore
+        RETURN "computer"
+
+FUNCTION playGame
+    RESET all scores to 0
+    LOOP 5 times
+        get human choice
+        get computer choice
+        play round
+
+    DISPLAY final scores including draws
+    DISPLAY overall winner or tie
+
+END*/
 		
 		const choices = ["Rock", "Paper", "Scissors"];
 
