@@ -5,57 +5,28 @@
 	<title>Moe's Rock Paper Scissors</title>
 </head>
 <body>
+	<h1>Rock Paper Scissors</h1>
+
+	<div id="buttons">
+	  <button data-choice="rock">Rock</button>
+	  <button data-choice="paper">Paper</button>
+	  <button data-choice="scissors">Scissors</button>
+	</div>
+	
+	<div id="results"></div>
+	
+	
 	<script>
 		
-/*START
-
-SET humanScore = 0
-SET computerScore = 0
-SET drawScore = 0
-
-DEFINE choices = ["Rock", "Paper", "Scissors"]
-
-FUNCTION getComputerChoice
-    RETURN random item from choices
-
-FUNCTION getHumanChoice(round)
-    LOOP until valid input
-        SHOW prompt including:
-            round number
-            humanScore
-            computerScore
-            drawScore
-        IF input invalid
-            SHOW error
-        ELSE
-            RETURN formatted input
-
-FUNCTION playRound(humanChoice, computerChoice)
-    IF humanChoice equals computerChoice
-        increment drawScore
-        RETURN "draw"
-
-    IF humanChoice beats computerChoice
-        increment humanScore
-        RETURN "human"
-
-    ELSE
-        increment computerScore
-        RETURN "computer"
-
-FUNCTION playGame
-    RESET all scores to 0
-    LOOP 5 times
-        get human choice
-        get computer choice
-        play round
-
-    DISPLAY final scores including draws
-    DISPLAY overall winner or tie
-
-END*/
+		const resultDiv = document.getElementById("results");
+		document.getElementById("buttons").addEventListener("click", (e) => {
+			if (e.target.tagName === "BUTTON") {
+				playRound(e.target.dataset.choice);
+			}
+		});
 		
-		const choices = ["Rock", "Paper", "Scissors"];
+
+		const choices = ["rock", "paper", "scissors"];
 
 		let humanScore = 0;
 		let computerScore = 0;
@@ -65,58 +36,30 @@ END*/
 		  return choices[Math.floor(Math.random() * choices.length)];
 		}
 		
-		function getHumanChoice(round) {
-		  while (true) {
-		    const input = prompt(
-		      `Round ${round} Enter Rock, Paper, or Scissors
 		
-You: ${humanScore} | System: ${computerScore} | Draws: ${drawScore}`
-		    );
-		
-		    if (!input) continue;
-		
-		    const choice = input.trim().toLowerCase();
-		
-		    if (choices.map(c => c.toLowerCase()).includes(choice)) {
-		      return choice.charAt(0).toUpperCase() + choice.slice(1);
-		    }
-		
-		    alert("Ahn ann, why na? Please enter Rock, Paper, or Scissors.");
-		  }
+		function playRound(playerSelection) {
+			const computerSelection = getComputerChoice();
+			
+			if (playerSelection === computerSelection) {
+				resultDiv.textContent = `it's a tie! you both chose ${playerSelection}`;
+			} else if (
+			(playerSelection === "rock" && computerSelection === "scissors") ||
+			(playerSelection === "paper" && computerSelection === "rock") ||
+			(playerSelection === "scissors" && computerSelection === "paper")
+			) {
+				resultDiv.textContent = `You win! ${playerSelection} beats ${computerSelection}`;
+			} else {
+				resultDiv.textContent = `You lose! ${computerSelection} beats ${playerSelection}`;
+			}
 		}
 		
-		function playRound(humanChoice, computerChoice) {
-		  console.log(`Human: ${humanChoice}`);
-		  console.log(`Computer: ${computerChoice}`);
-		
-		  const winMap = {
-		    Rock: "Scissors",
-		    Paper: "Rock",
-		    Scissors: "Paper"
-		  };
-		
-		  if (humanChoice === computerChoice) {
-		    drawScore++;
-		    console.log("Draw! You both chose the same.");
-		    return;
-		  }
-		
-		  if (winMap[humanChoice] === computerChoice) {
-		    humanScore++;
-		    console.log(`${humanChoice} beats ${computerChoice}. You win!`);
-		  } else {
-		    computerScore++;
-		    console.log(`${computerChoice} beats ${humanChoice}. You lose!`);
-		  }
-		}
-		
-		function playGame() {
+		/*function playGame() {
 		  // Reset scores in case game runs again
 		  humanScore = 0;
 		  computerScore = 0;
 		  drawScore = 0;
 		
-		  for (let round = 1; round <= 5; round++) {
+		  for (let round = 1; round <= 1; round++) {
 		    const humanSelection = getHumanChoice(round);
 		    const computerSelection = getComputerChoice();
 		    playRound(humanSelection, computerSelection);
@@ -139,7 +82,7 @@ Draws: ${drawScore}
 		  }
 		}
 
-		playGame();
+		playGame();*/
 		
 	</script>
 </body>
