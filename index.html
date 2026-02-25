@@ -1,68 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8" />
-	<title>Moe's Rock Paper Scissors</title>
+  <meta charset="UTF-8" />
+  <title>Moe's Rock Paper Scissors</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #results p {
+      margin: 5px 0;
+    }
+    #restart {
+      display: none;
+      margin-top: 20px;
+      background-color: #4CAF50;
+      color: white;
+    }
+  </style>
 </head>
 <body>
-	<h1>Rock Paper Scissors</h1>
+  <h1>Rock Paper Scissors</h1>
+	
+  <div id="results"></div>
 
-	<div id="buttons">
-	  <button data-choice="rock">Rock</button>
-	  <button data-choice="paper">Paper</button>
-	  <button data-choice="scissors">Scissors</button>
-	</div>
-	
-	<div id="results"></div>
-	
-	
-	<script>
+  <div id="buttons">
+    <button data-choice="rock">Rock</button>
+    <button data-choice="paper">Paper</button>
+    <button data-choice="scissors">Scissors</button>
+  </div>
 
-		const resultsDiv = document.getElementById("results");
-		const buttonsDiv = document.getElementById("buttons");
-		
-		buttonsDiv.addEventListener("click", (e) => {
-		  if (e.target.tagName === "BUTTON") {
-		    playRound(e.target.dataset.choice);
-		  }
-		});
-		
-		const choices = ["rock", "paper", "scissors"];
-		
-		let humanScore = 0;
-		let computerScore = 0;
-		let drawScore = 0;
-		
-		function getComputerChoice() {
-		  return choices[Math.floor(Math.random() * choices.length)];
-		}
-		
-		function playRound(playerSelection) {
-		  const computerSelection = getComputerChoice();
-		
-		  if (playerSelection === computerSelection) {
-		    drawScore++;
-		    resultsDiv.textContent =
-		      `It's a tie! You both chose ${playerSelection}`;
-		  } else if (
-		    (playerSelection === "rock" && computerSelection === "scissors") ||
-		    (playerSelection === "paper" && computerSelection === "rock") ||
-		    (playerSelection === "scissors" && computerSelection === "paper")
-		  ) {
-		    humanScore++;
-		    resultsDiv.textContent =
-		      `You win! ${playerSelection} beats ${computerSelection}`;
-		  } else {
-		    computerScore++;
-		    resultsDiv.textContent =
-		      `You lose! ${computerSelection} beats ${playerSelection}`;
-		  }
-		
-		  resultsDiv.innerHTML += `<p>
-		    Score → You: ${humanScore} | Computer: ${computerScore} | Draws: ${drawScore}
-		  </p>`;
-		}
-		
-	</script>
+  <button id="restart">Restart Game</button>
+
+  <script>
+    const resultsDiv = document.getElementById("results");
+    const buttonsDiv = document.getElementById("buttons");
+    const restartBtn = document.getElementById("restart");
+
+    const choices = ["rock", "paper", "scissors"];
+    let humanScore = 0;
+    let computerScore = 0;
+    let drawScore = 0;
+    const winningScore = 5;
+
+    // Get computer choice
+    function getComputerChoice() {
+      return choices[Math.floor(Math.random() * choices.length)];
+    }
+
+    // Play a round
+    function playRound(playerSelection) {
+      if (humanScore >= winningScore || computerScore >= winningScore) return;
+
+      const computerSelection = getComputerChoice();
+      let roundResult = "";
+
+      if (playerSelection === computerSelection) {
+        drawScore++;
+        roundResult = `It's a tie! Both chose ${playerSelection}`;
+      } else if (
+        (playerSelection === "rock" && computerSelection === "scissors") ||
+        (playerSelection === "paper" && computerSelection === "rock") ||
+        (playerSelection === "scissors" && computerSelection === "paper")
+      ) {
+        humanScore++;
+        roundResult = `You win! ${playerSelection} beats ${computerSelection}`;
+      } else {
+        computerScore++;
+        roundResult = `You lose! ${computerSelection} beats ${playerSelection}`;
+      }
+
+      resultsDiv.innerHTML = `
+        <p>${roundResult}</p>
+        <p>Score → You: ${humanScore} | Computer: ${computerScore} | Draws: ${drawScore}</p>
+      `;
+
+      checkGameOver();
+    }
+
+    // Check if game is over
+    function checkGameOver() {
+      if (humanScore >= winningScore || computerScore >= winningScore) {
+        const winner =
+          humanScore > computerScore ? "You win the game!" : "Computer wins the game!";
+        resultsDiv.innerHTML += `<p><strong>${winner}</strong></p>`;
+        disableButtons();
+        restartBtn.style.display = "inline-block";
+      }
+    }
+
+    // Disable choice buttons
+    function disableButtons() {
+      const buttons = buttonsDiv.querySelectorAll("button");
+      buttons.forEach((btn) => (btn.disabled = true));
+    }
+
+    // Enable buttons
+    function enableButtons() {
+      const buttons = buttonsDiv.querySelectorAll("button");
+      buttons.forEach((btn) => (btn.disabled = false));
+    }
+
+    // Restart game
+    function restartGame() {
+      humanScore = 0;
+      computerScore = 0;
+      drawScore = 0;
+      resultsDiv.innerHTML = "";
+      enableButtons();
+      restartBtn.style.display = "none";
+    }
+
+    // Event listeners
+    buttonsDiv.addEventListener("click", (e) => {
+      if (e.target.tagName === "BUTTON") {
+        playRound(e.target.dataset.choice);
+      }
+    });
+
+    restartBtn.addEventListener("click", restartGame);
+  </script>
 </body>
 </html>
