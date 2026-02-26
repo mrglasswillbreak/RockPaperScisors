@@ -49,9 +49,9 @@ The game ends when a player reaches **5 points**, with automatic button disablin
 
 ## 📂 Project Structure
 RockPaperScisors/
-├── index.html
-├── style.css
-└── script.js
+- ├── index.html
+- ├── style.css
+- └── script.js
 
 ---
 
