@@ -1,14 +1,23 @@
 :root {
   color-scheme: dark;
-  --bg: radial-gradient(circle at top, #1e3b70, #0f172a 48%, #020617 100%);
-  --card: rgba(15, 23, 42, 0.82);
-  --surface: rgba(30, 41, 59, 0.55);
-  --surface-strong: rgba(15, 23, 42, 0.9);
-  --border: rgba(148, 163, 184, 0.25);
-  --accent: #38bdf8;
-  --accent-soft: rgba(56, 189, 248, 0.18);
-  --text: #e2e8f0;
-  --muted: #94a3b8;
+  --bg:
+    radial-gradient(1200px 560px at 50% 0%, rgba(62, 97, 130, 0.28), transparent 60%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(56, 189, 248, 0.06) 0,
+      rgba(56, 189, 248, 0.06) 120px,
+      rgba(15, 23, 42, 0.82) 120px,
+      rgba(15, 23, 42, 0.82) 240px
+    ),
+    linear-gradient(180deg, #0a1218, #0b1218 60%, #0a1117);
+  --card: rgba(10, 16, 22, 0.86);
+  --surface: rgba(24, 31, 41, 0.86);
+  --surface-strong: rgba(30, 38, 50, 0.9);
+  --border: rgba(71, 85, 105, 0.42);
+  --accent: #2db5ff;
+  --accent-soft: rgba(45, 181, 255, 0.17);
+  --text: #d6d7d9;
+  --muted: #a5a9ae;
 }
 
 body[data-theme="light"] {
@@ -34,9 +43,11 @@ body {
   font-family: "Inter", system-ui, -apple-system, sans-serif;
   background: var(--bg);
   color: var(--text);
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0.75rem;
+  overflow-y: auto;
 }
 
 .app {
@@ -48,9 +59,9 @@ body {
   border: 1px solid var(--border);
   border-radius: 24px;
   padding: 1.25rem;
-  box-shadow: 0 20px 60px rgba(2, 6, 23, 0.28);
+  box-shadow: 0 20px 60px rgba(2, 6, 23, 0.4);
   backdrop-filter: blur(12px);
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .app__header {
@@ -144,7 +155,7 @@ select,
   padding: 0.75rem;
   border-radius: 12px;
   background: var(--accent-soft);
-  border: 1px solid color-mix(in oklab, var(--accent), #64748b 35%);
+  border: 1px solid color-mix(in oklab, var(--accent), #475569 40%);
 }
 
 .status__line,
@@ -199,9 +210,9 @@ select,
   font-size: 0.87rem;
 }
 
-.choice--rock { background: linear-gradient(140deg, #6366f1, #4338ca); }
-.choice--paper { background: linear-gradient(140deg, #0ea5e9, #0369a1); }
-.choice--scissors { background: linear-gradient(140deg, #f43f5e, #be123c); }
+.choice--rock { background: linear-gradient(140deg, #312dc4, #2520a5); }
+.choice--paper { background: linear-gradient(140deg, #1f9fe3, #0f7db8); }
+.choice--scissors { background: linear-gradient(140deg, #dd1748, #b10939); }
 
 .choice:hover,
 .restart:hover,
@@ -282,5 +293,17 @@ select,
 
   .history-wrap {
     margin-top: 0.55rem;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 560px) {
+  body {
+    align-items: flex-start;
+    padding: 0.35rem;
+  }
+
+  .app {
+    max-height: none;
+    overflow: visible;
   }
 }
