@@ -1,86 +1,173 @@
-const resultsDiv = document.getElementById("results");
+const statusBox = document.getElementById("status");
+const statusLine = statusBox.querySelector(".status__line");
+const statusSubline = statusBox.querySelector(".status__subline");
 const buttonsDiv = document.getElementById("buttons");
 const restartBtn = document.getElementById("restart");
+const historyList = document.getElementById("history");
+const humanScoreLabel = document.getElementById("humanScore");
+const computerScoreLabel = document.getElementById("computerScore");
+const drawScoreLabel = document.getElementById("drawScore");
+const targetScoreSelect = document.getElementById("targetScore");
+const targetScoreLabel = document.getElementById("targetScoreLabel");
+
+const choiceDisplay = {
+  rock: "🪨 Rock",
+  paper: "📄 Paper",
+  scissors: "✂️ Scissors",
+};
 
 const choices = ["rock", "paper", "scissors"];
 let humanScore = 0;
 let computerScore = 0;
 let drawScore = 0;
-const winningScore = 5;
+let roundNumber = 0;
+let winningScore = Number(targetScoreSelect.value);
 
-// Get computer choice
 function getComputerChoice() {
   return choices[Math.floor(Math.random() * choices.length)];
 }
 
-// Play a round
+function updateScoreboard() {
+  humanScoreLabel.textContent = humanScore;
+  computerScoreLabel.textContent = computerScore;
+  drawScoreLabel.textContent = drawScore;
+}
+
+function setStatus(resultClass, line, subline) {
+  statusBox.classList.remove("status--win", "status--lose", "status--draw");
+  if (resultClass) {
+    statusBox.classList.add(resultClass);
+  }
+
+  statusLine.textContent = line;
+  statusSubline.textContent = subline;
+}
+
+function addHistoryEntry(text) {
+  const item = document.createElement("li");
+  item.textContent = text;
+  historyList.prepend(item);
+
+  while (historyList.children.length > 6) {
+    historyList.removeChild(historyList.lastChild);
+  }
+}
+
+function checkGameOver() {
+  if (humanScore >= winningScore || computerScore >= winningScore) {
+    const isHumanWinner = humanScore > computerScore;
+    const line = isHumanWinner ? "🎉 You won the match!" : "🤖 Computer won the match.";
+    const subline = "Press Start New Match to play again.";
+
+    setStatus(isHumanWinner ? "status--win" : "status--lose", line, subline);
+    disableButtons();
+    restartBtn.style.display = "inline-block";
+    targetScoreSelect.disabled = false;
+
+    return true;
+  }
+
+  return false;
+}
+
 function playRound(playerSelection) {
-  if (humanScore >= winningScore || computerScore >= winningScore) return;
+  if (humanScore >= winningScore || computerScore >= winningScore) {
+    return;
+  }
+
+  targetScoreSelect.disabled = true;
 
   const computerSelection = getComputerChoice();
-  let roundResult = "";
+  roundNumber += 1;
 
   if (playerSelection === computerSelection) {
-    drawScore++;
-    roundResult = `It's a tie! Both chose ${playerSelection}`;
+    drawScore += 1;
+    setStatus(
+      "status--draw",
+      "Round drawn!",
+      `You both picked ${choiceDisplay[playerSelection]}.`
+    );
   } else if (
     (playerSelection === "rock" && computerSelection === "scissors") ||
     (playerSelection === "paper" && computerSelection === "rock") ||
     (playerSelection === "scissors" && computerSelection === "paper")
   ) {
-    humanScore++;
-    roundResult = `You win! ${playerSelection} beats ${computerSelection}`;
+    humanScore += 1;
+    setStatus(
+      "status--win",
+      "You won this round!",
+      `${choiceDisplay[playerSelection]} beats ${choiceDisplay[computerSelection]}.`
+    );
   } else {
-    computerScore++;
-    roundResult = `You lose! ${computerSelection} beats ${playerSelection}`;
+    computerScore += 1;
+    setStatus(
+      "status--lose",
+      "Computer won this round.",
+      `${choiceDisplay[computerSelection]} beats ${choiceDisplay[playerSelection]}.`
+    );
   }
 
-  resultsDiv.innerHTML = `
-    <p>${roundResult}</p>
-    <p>Score → You: ${humanScore} | Computer: ${computerScore} | Draws: ${drawScore}</p>
-  `;
+  addHistoryEntry(
+    `Round ${roundNumber}: You chose ${choiceDisplay[playerSelection]}, computer chose ${choiceDisplay[computerSelection]}.`
+  );
 
+  updateScoreboard();
   checkGameOver();
 }
 
-// Check if game is over
-function checkGameOver() {
-  if (humanScore >= winningScore || computerScore >= winningScore) {
-    const winner =
-      humanScore > computerScore ? "You win the game!" : "Computer wins the game!";
-    resultsDiv.innerHTML += `<p><strong>${winner}</strong></p>`;
-    disableButtons();
-    restartBtn.style.display = "inline-block";
-  }
-}
-
-// Disable choice buttons
 function disableButtons() {
-  const buttons = buttonsDiv.querySelectorAll("button");
-  buttons.forEach((btn) => (btn.disabled = true));
+  buttonsDiv.querySelectorAll("button").forEach((btn) => {
+    btn.disabled = true;
+  });
 }
 
-// Enable buttons
 function enableButtons() {
-  const buttons = buttonsDiv.querySelectorAll("button");
-  buttons.forEach((btn) => (btn.disabled = false));
+  buttonsDiv.querySelectorAll("button").forEach((btn) => {
+    btn.disabled = false;
+  });
 }
 
-// Restart game
 function restartGame() {
   humanScore = 0;
   computerScore = 0;
   drawScore = 0;
-  resultsDiv.innerHTML = "";
+  roundNumber = 0;
+  winningScore = Number(targetScoreSelect.value);
+  targetScoreLabel.textContent = winningScore;
+
+  historyList.innerHTML = "";
+  updateScoreboard();
   enableButtons();
   restartBtn.style.display = "none";
+  setStatus(null, "Make your move to begin.", "Good luck!");
 }
 
-// Event listeners
-buttonsDiv.addEventListener("click", (e) => {
-  if (e.target.tagName === "BUTTON") {
-    playRound(e.target.dataset.choice);
+buttonsDiv.addEventListener("click", (event) => {
+  const button = event.target.closest("button[data-choice]");
+  if (!button) {
+    return;
   }
+
+  playRound(button.dataset.choice);
 });
 
 restartBtn.addEventListener("click", restartGame);
+
+targetScoreSelect.addEventListener("change", () => {
+  winningScore = Number(targetScoreSelect.value);
+  targetScoreLabel.textContent = winningScore;
+  restartGame();
+});
+
+document.addEventListener("keydown", (event) => {
+  const key = event.key.toLowerCase();
+  const keyMap = { r: "rock", p: "paper", s: "scissors" };
+
+  if (!keyMap[key]) {
+    return;
+  }
+
+  playRound(keyMap[key]);
+});
+
+updateScoreboard();
