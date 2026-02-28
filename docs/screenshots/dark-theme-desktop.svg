@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Dark mode desktop preview">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#081018"/>
+      <stop offset="50%" stop-color="#111a24"/>
+      <stop offset="100%" stop-color="#081018"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <rect x="140" y="90" width="1000" height="540" rx="28" fill="#0d141d" stroke="#2d3a49"/>
+  <text x="640" y="175" fill="#2db5ff" text-anchor="middle" font-family="Inter,Arial" font-size="22" font-weight="700" letter-spacing="4">ARCADE MODE</text>
+  <text x="640" y="230" fill="#d6d7d9" text-anchor="middle" font-family="Inter,Arial" font-size="66" font-weight="700">Rock Paper Scissors</text>
+  <text x="640" y="280" fill="#a5a9ae" text-anchor="middle" font-family="Inter,Arial" font-size="22">First to 5 wins. Keyboard: R, P, S.</text>
+  <rect x="175" y="320" width="290" height="110" rx="18" fill="#18202a" stroke="#37485d"/>
+  <rect x="495" y="320" width="290" height="110" rx="18" fill="#18202a" stroke="#37485d"/>
+  <rect x="815" y="320" width="290" height="110" rx="18" fill="#18202a" stroke="#37485d"/>
+  <text x="320" y="365" fill="#a5a9ae" text-anchor="middle" font-size="28" font-family="Inter,Arial">You</text>
+  <text x="640" y="365" fill="#a5a9ae" text-anchor="middle" font-size="28" font-family="Inter,Arial">Draws</text>
+  <text x="960" y="365" fill="#a5a9ae" text-anchor="middle" font-size="28" font-family="Inter,Arial">Computer</text>
+  <text x="320" y="410" fill="#d6d7d9" text-anchor="middle" font-size="56" font-family="Inter,Arial">0</text>
+  <text x="640" y="410" fill="#d6d7d9" text-anchor="middle" font-size="56" font-family="Inter,Arial">0</text>
+  <text x="960" y="410" fill="#d6d7d9" text-anchor="middle" font-size="56" font-family="Inter,Arial">0</text>
+</svg>

@@ -1,73 +1,71 @@
-# 🎮 Rock Paper Scissors
+# Rock Paper Scissors
 
-<p align="center">
-  A modern browser-based implementation of the classic game built with HTML, CSS, and Vanilla JavaScript.
-</p>
+A polished, responsive Rock Paper Scissors web app built with semantic HTML, modern CSS, and vanilla JavaScript.
 
-<p align="center">
-  <a href="https://mrglasswillbreak.github.io/RockPaperScisors/">
-    <strong>🔗 Live Demo</strong>
-  </a>
-</p>
+## Overview
 
----
+This project modernizes the classic game with a compact mobile-first layout, keyboard shortcuts, configurable match length, and persistent theme preferences.
 
-## 🚀 Overview
+## Features
 
-This project is a fully interactive Rock Paper Scissors web application that demonstrates:
+- **Responsive, mobile-first gameplay** with a compact viewport-friendly layout
+- **Light / Dark mode toggle** with preference saved in `localStorage`
+- **Keyboard controls** (`R`, `P`, `S`) in addition to button input
+- **Configurable target score** (`3`, `5`, or `7`)
+- **Live status updates** for round outcomes and match results
+- **Round history** list showing the latest rounds
+- **Restart flow** for starting a fresh match instantly
 
-- DOM manipulation
-- Event delegation
-- Game state management
-- Responsive UI design
-- Clean separation of concerns (HTML, CSS, JS)
+## Screenshots
 
-The game ends when a player reaches **5 points**, with automatic button disabling and restart functionality.
+### Desktop (Light Theme)
+![Desktop light theme](docs/screenshots/light-theme-desktop.svg)
 
----
+### Desktop (Dark Theme)
+![Desktop dark theme](docs/screenshots/dark-theme-desktop.svg)
 
-## ✨ Features
+### Mobile Layout
+![Mobile layout](docs/screenshots/mobile-layout.svg)
 
-- 🎯 Interactive button-based gameplay
-- 🤖 Randomized computer choice logic
-- 📊 Real-time score tracking
-- 🏆 First-to-5 win system
-- 🔄 Restart game functionality
-- 🚫 Buttons disabled on game over
-- 📱 Fully centered responsive layout using Flexbox
-- 📁 External CSS and JavaScript files
+## Tech Stack
 
----
+- HTML5
+- CSS3
+- JavaScript (ES6)
 
-## 🛠️ Tech Stack
+## Project Structure
 
-<p align="center">
-  HTML5 &nbsp;|&nbsp; CSS3 (Flexbox) &nbsp;|&nbsp; Vanilla JavaScript (ES6)
-</p>
-
----
-
-## 📂 Project Structure
+```text
 RockPaperScisors/
-- ├── index.html
-- ├── style.css
-- └── script.js
+├── index.html
+├── style.css
+├── script.js
+└── README.md
+```
 
----
+## Run Locally
 
-## 🧠 Core Concepts Demonstrated
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/mrGlassWillBreak/RockPaperScisors.git
+   cd RockPaperScisors
+   ```
+2. Open `index.html` directly in your browser.
 
-- Event delegation for scalable button handling
-- Conditional logic for game outcomes
-- State management using scoped variables
-- Dynamic DOM updates with `innerHTML`
-- Proper external resource linking
-- Responsive vertical & horizontal centering with Flexbox
+> Optional: run a local static server for parity with deployed behavior:
+>
+> ```bash
+> python3 -m http.server 4173
+> ```
 
----
+## Controls
 
-## ▶️ Run Locally
+- **Mouse / Touch**: Click a move button
+- **Keyboard**:
+  - `R` = Rock
+  - `P` = Paper
+  - `S` = Scissors
 
-```bash
-git clone https://github.com/mrGlassWillBreak/RockPaperScisors.git
-cd RockPaperScisors
+## License
+
+This project is open source and available under the MIT License.

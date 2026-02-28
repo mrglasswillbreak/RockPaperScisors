@@ -2,21 +2,70 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Moe's Rock Paper Scissors</title>
-	<link rel="stylesheet" href="style.css" />
-	<script src="script.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <h1>Rock Paper Scissors</h1>
-	
-  <div id="results"></div>
+  <main class="app">
+    <header class="app__header">
+      <p class="eyebrow">Arcade Mode</p>
+      <h1>Rock Paper Scissors</h1>
+      <p class="subtitle">First to <span id="targetScoreLabel">5</span> wins. You can play with mouse clicks or keys: <strong>R</strong>, <strong>P</strong>, <strong>S</strong>.</p>
+    </header>
 
-  <div id="buttons">
-    <button data-choice="rock">Rock</button>
-    <button data-choice="paper">Paper</button>
-    <button data-choice="scissors">Scissors</button>
-  </div>
+    <section class="scoreboard" aria-label="Game scoreboard">
+      <article class="score-card score-card--player">
+        <h2>You</h2>
+        <p id="humanScore" class="score">0</p>
+      </article>
+      <article class="score-card score-card--draws">
+        <h2>Draws</h2>
+        <p id="drawScore" class="score">0</p>
+      </article>
+      <article class="score-card score-card--cpu">
+        <h2>Computer</h2>
+        <p id="computerScore" class="score">0</p>
+      </article>
+    </section>
 
-  <button id="restart">Restart Game</button>
+    <section class="controls" aria-label="Game controls">
+      <div class="control-group">
+        <label for="targetScore" class="control-label">Target score</label>
+        <select id="targetScore">
+          <option value="3">3</option>
+          <option value="5" selected>5</option>
+          <option value="7">7</option>
+        </select>
+      </div>
+
+      <div class="control-group control-group--theme">
+        <label for="themeToggle" class="control-label">Theme</label>
+        <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false">☀️ Light mode</button>
+      </div>
+    </section>
+
+    <section id="status" class="status" aria-live="polite">
+      <p class="status__line">Make your move to begin.</p>
+      <p class="status__subline">Good luck!</p>
+    </section>
+
+    <section id="buttons" class="buttons" aria-label="Choose your move">
+      <button class="choice choice--rock" data-choice="rock" aria-label="Choose rock">🪨<span>Rock</span></button>
+      <button class="choice choice--paper" data-choice="paper" aria-label="Choose paper">📄<span>Paper</span></button>
+      <button class="choice choice--scissors" data-choice="scissors" aria-label="Choose scissors">✂️<span>Scissors</span></button>
+    </section>
+
+    <section class="history-wrap" aria-label="Round history">
+      <h2>Recent rounds</h2>
+      <ul id="history" class="history-list"></ul>
+    </section>
+
+    <button id="restart" class="restart" type="button">Start New Match</button>
+  </main>
 </body>
 </html>
