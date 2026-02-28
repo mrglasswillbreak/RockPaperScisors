@@ -9,6 +9,7 @@ const computerScoreLabel = document.getElementById("computerScore");
 const drawScoreLabel = document.getElementById("drawScore");
 const targetScoreSelect = document.getElementById("targetScore");
 const targetScoreLabel = document.getElementById("targetScoreLabel");
+const themeToggle = document.getElementById("themeToggle");
 
 const choiceDisplay = {
   rock: "🪨 Rock",
@@ -17,6 +18,7 @@ const choiceDisplay = {
 };
 
 const choices = ["rock", "paper", "scissors"];
+const themeStorageKey = "rps-theme";
 let humanScore = 0;
 let computerScore = 0;
 let drawScore = 0;
@@ -25,6 +27,29 @@ let winningScore = Number(targetScoreSelect.value);
 
 function getComputerChoice() {
   return choices[Math.floor(Math.random() * choices.length)];
+}
+
+function updateThemeToggle(theme) {
+  const isLight = theme === "light";
+  themeToggle.textContent = isLight ? "🌙 Dark mode" : "☀️ Light mode";
+  themeToggle.setAttribute("aria-pressed", String(isLight));
+}
+
+function applyTheme(theme) {
+  document.body.dataset.theme = theme;
+  localStorage.setItem(themeStorageKey, theme);
+  updateThemeToggle(theme);
+}
+
+function initializeTheme() {
+  const storedTheme = localStorage.getItem(themeStorageKey);
+  if (storedTheme === "light" || storedTheme === "dark") {
+    applyTheme(storedTheme);
+    return;
+  }
+
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  applyTheme(prefersDark ? "dark" : "light");
 }
 
 function updateScoreboard() {
@@ -159,6 +184,12 @@ targetScoreSelect.addEventListener("change", () => {
   restartGame();
 });
 
+themeToggle.addEventListener("click", () => {
+  const currentTheme = document.body.dataset.theme === "light" ? "light" : "dark";
+  const nextTheme = currentTheme === "light" ? "dark" : "light";
+  applyTheme(nextTheme);
+});
+
 document.addEventListener("keydown", (event) => {
   const key = event.key.toLowerCase();
   const keyMap = { r: "rock", p: "paper", s: "scissors" };
@@ -170,4 +201,5 @@ document.addEventListener("keydown", (event) => {
   playRound(keyMap[key]);
 });
 
+initializeTheme();
 updateScoreboard();

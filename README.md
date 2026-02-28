@@ -4,7 +4,8 @@ A polished Rock Paper Scissors browser game built with vanilla HTML, CSS, and Ja
 
 ## ✨ Highlights
 
-- Modern card-based UI with responsive layout
+- Mobile-first layout that keeps scores and actions visible without excessive scrolling
+- Light and dark theme toggle with saved preference
 - Keyboard support (`R`, `P`, `S`)
 - Configurable target score (3, 5, or 7)
 - Live round result panel with visual feedback states
