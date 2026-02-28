@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="880" viewBox="0 0 420 880" role="img" aria-label="Mobile layout preview">
+  <rect width="420" height="880" fill="#0b1218"/>
+  <rect x="10" y="70" width="400" height="760" rx="22" fill="#0d141d" stroke="#2d3a49"/>
+  <text x="210" y="130" fill="#2db5ff" text-anchor="middle" font-size="12" font-family="Inter,Arial" letter-spacing="3">ARCADE MODE</text>
+  <text x="210" y="170" fill="#d6d7d9" text-anchor="middle" font-size="54" font-family="Inter,Arial" font-weight="700">RPS</text>
+  <rect x="24" y="210" width="112" height="90" rx="14" fill="#18202a" stroke="#37485d"/>
+  <rect x="154" y="210" width="112" height="90" rx="14" fill="#18202a" stroke="#37485d"/>
+  <rect x="284" y="210" width="112" height="90" rx="14" fill="#18202a" stroke="#37485d"/>
+  <rect x="24" y="330" width="372" height="95" rx="16" fill="#113247" stroke="#2db5ff"/>
+  <rect x="24" y="450" width="112" height="95" rx="14" fill="#312dc4"/>
+  <rect x="154" y="450" width="112" height="95" rx="14" fill="#1f9fe3"/>
+  <rect x="284" y="450" width="112" height="95" rx="14" fill="#dd1748"/>
+  <text x="210" y="610" fill="#d6d7d9" text-anchor="middle" font-size="40" font-family="Inter,Arial">Mobile</text>
+  <text x="210" y="650" fill="#a5a9ae" text-anchor="middle" font-size="26" font-family="Inter,Arial">Scrollable layout</text>
+</svg>

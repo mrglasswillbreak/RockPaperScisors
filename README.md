@@ -19,13 +19,13 @@ This project modernizes the classic game with a compact mobile-first layout, key
 ## Screenshots
 
 ### Desktop (Light Theme)
-![Desktop light theme](browser:/tmp/codex_browser_invocations/f40cf3d180a39a86/artifacts/docs/screenshots/light-theme-desktop.png)
+![Desktop light theme](docs/screenshots/light-theme-desktop.svg)
 
 ### Desktop (Dark Theme)
-![Desktop dark theme](browser:/tmp/codex_browser_invocations/f40cf3d180a39a86/artifacts/docs/screenshots/dark-theme-desktop.png)
+![Desktop dark theme](docs/screenshots/dark-theme-desktop.svg)
 
 ### Mobile Layout
-![Mobile layout](browser:/tmp/codex_browser_invocations/f40cf3d180a39a86/artifacts/docs/screenshots/mobile-layout.png)
+![Mobile layout](docs/screenshots/mobile-layout.svg)
 
 ## Tech Stack
 
