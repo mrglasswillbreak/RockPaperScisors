@@ -6,6 +6,9 @@ A polished, responsive Rock Paper Scissors web app built with semantic HTML, mod
 
 This project modernizes the classic game with a compact mobile-first layout, keyboard shortcuts, configurable match length, and persistent theme preferences.
 
+## Live Demo
+- **GitHub Pages:** https://github.com/mrglasswillbreak/RockPaperScissors/
+
 ## Features
 
 - **Responsive, mobile-first gameplay** with a compact viewport-friendly layout
